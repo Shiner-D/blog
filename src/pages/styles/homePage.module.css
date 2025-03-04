@@ -1,0 +1,39 @@
+section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.home {
+    background-image: url('@/assets/images/bg_home2.jpg');
+}
+.blog {
+    background-image: url('@/assets/images/bg_blog.jpg');
+}
+.book {
+    background-image: url('@/assets/images/bg_book.jpg');
+}
+.about {
+    background-image: url('@/assets/images/bg_about.jpg');
+}
+
+h1 {
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    z-index: 1;
+    font-size: 3em;
+    font-weight: 400;
+}

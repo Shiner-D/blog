@@ -1,0 +1,37 @@
+.card {
+    width: 200px;
+    height: 300px;
+    margin: 0 50px;
+    position: relative;
+}
+
+.card img {
+    position: absolute;
+    width: 100%;
+    transition:  .3s;
+}
+
+.card:hover .cover {
+    box-shadow: 0 35px 35px -8px rgba(0,0,0,0.75);
+    transform: perspective(500px) rotateX(30deg);
+}
+.cover {
+    z-index: 1;
+}
+
+.card:hover .threeD {
+    opacity: 1;
+    transform: perspective(500px) translate3d(0, -50px, 50px);
+}
+.threeD {
+    z-index: 2;
+    opacity: 0;
+}
+
+.card:hover .title {
+    opacity: 1;
+    transform: perspective(500px) translate3d(0, -25px, 50px);
+}
+.title {
+    z-index: 3;
+}
