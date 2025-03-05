@@ -27,6 +27,8 @@ export const HoverEffect = ({
         <a
           href={item?.link}
           key={item?.link}
+          target="_blank"
+          rel="noopener noreferrer"
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -48,7 +50,7 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card>
+          <Card className="h-[300px]">
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
           </Card>
@@ -73,7 +75,7 @@ export const Card = ({
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );
@@ -86,8 +88,14 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4
+      className={cn(
+        "text-zinc-100 font-bold tracking-wide text-xl",
+        className
+      )}
+    >
       {children}
+      {className}
     </h4>
   );
 };

@@ -24,10 +24,10 @@ section {
     background-image: url('@/assets/images/bg_blog.jpg');
 }
 .book {
-    background-image: url('@/assets/images/bg_book.jpg');
+    background-image: url('@/assets/images/bg_book2.jpg');
 }
 .about {
-    background-image: url('@/assets/images/bg_about.jpg');
+    background-image: url('@/assets/images/bg_about1.jpg');
 }
 
 h1 {

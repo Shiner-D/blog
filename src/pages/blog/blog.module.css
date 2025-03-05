@@ -1,0 +1,4 @@
+.hover-effect1 div {
+  padding: 10px;
+  color: red; /* 修改子元素的文本颜色 */
+}

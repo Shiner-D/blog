@@ -30,7 +30,7 @@ const Home: React.FC = () => {
           className="lg:text-[2.8rem] font-sans mt-[10vh]"
         />
         <CardContainer className={`inter-var mt-20 ${homeStyle.home_card}`}>
-          <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+          <CardBody className="bg-[#3D2922] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
             <CardItem translateZ="200" className="w-full mt-4">
               <img
                 src={nezaiJ}
@@ -49,28 +49,28 @@ const Home: React.FC = () => {
             </CardItem>
             <CardItem
               translateZ="50"
-              className={`text-xl font-bold text-neutral-600 dark:text-white ${homeStyle.font_shadow}`}
+              className={`text-xl font-bold text-[#CBB1A0] dark:text-white ${homeStyle.font_shadow}`}
             >
               折木泛舟
             </CardItem>
             <CardItem
               as="p"
               translateZ="60"
-              className={`text-neutral-500 text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
+              className={`text-[#CBB1A0] text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
               职业：前端开发者
             </CardItem>
             <CardItem
               as="p"
               translateZ="70"
-              className={`text-neutral-500 text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
+              className={`text-[#CBB1A0] text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
               爱好：羽毛球、跑步、音乐、动漫
             </CardItem>
             <CardItem
               as="p"
               translateZ="80"
-              className={`text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
+              className={`text-[#CBB1A0] text-sm max-w-sm mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
               个性签名：最大荣耀不在于从不跌倒，而在于每次跌倒后都能站起来
             </CardItem>
