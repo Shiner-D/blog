@@ -18,12 +18,12 @@ export const Layout = () => {
 
   return (
     <div className="min-h-screen">
-      <nav className="fixed top-0 left-0 bg-white/80 shadow-[0_4px_10px_rgba(255,255,255,0.5)] w-full z-10 p-4 flex justify-center gap-6 z-50">
+      <nav className="fixed top-0 left-0 bg-yellow-950/85 shadow-[0_4px_10px_rgba(255,255,255,0.5)] w-full z-10 p-4 flex justify-center gap-6 z-50">
         {sections.map(({ id, title }) => (
           <a
             key={id}
             href={`#${id}`}
-            className="px-4 text-lg font-semibold text-black hover:text-white transition"
+            className="px-4 text-lg font-semibold text-[#ebedff] hover:text-[#e1d0a3] transition"
           >
             {title}
           </a>

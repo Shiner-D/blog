@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       <div className="relative flex h-[600px] w-full flex-col justify-center overflow-hidden max-h-screen">
         <MorphingText
           texts={title}
-          className="lg:text-[2.8rem] font-sans mt-[10vh]"
+          className="lg:text-[2.8rem] font-sans mt-[10vh] text-[#EFEAE7]"
         />
         <CardContainer className={`inter-var mt-20 ${homeStyle.home_card}`}>
           <CardBody className="bg-[#3D2922] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
                 height="1000"
                 width="1000"
                 className="h-24 w-24 object-cover rounded-full mx-auto group-hover/card:opacity-0 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
-                alt="thumbnail"
+                alt=""
               />
               <img
                 src={nezaiD}

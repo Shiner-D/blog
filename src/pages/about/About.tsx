@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import confetti from "canvas-confetti";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import {
   IconArrowWaveRightUp,
@@ -44,12 +45,8 @@ const About = () => {
     ],
   };
   const Skeleton = ({ content, type }: SkeletonProps) => (
-    <div className="w-full h-full min-h-[6rem] text-[12px] p-[8px] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100">
-      <div
-        className={`${
-          type === "technology" ? "flex flex-wrap gap-2" : ""
-        }`}
-      >
+    <div className="w-full h-full min-h-[6rem] text-[12px] p-[8px] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-[#010c35] group-hover/bento:-translate-y-2 group-hover/bento:shadow-xl">
+      <div className={`${type === "technology" ? "flex flex-wrap gap-2" : ""}`}>
         {content && type !== "technology"
           ? content.map((item, i) => (
               <p className="text-sm/7 text-stone-900 font-normal" key={i}>
@@ -100,8 +97,38 @@ const About = () => {
     },
   ];
 
+  const handleClick = () => {
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
+    const interval = window.setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
+  };
+
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full h-full flex flex-col justify-around">
+      <div className="flex justify-center">
+        <span className="cursor-default" onClick={handleClick}>我的信息</span>
+      </div>
       <div className="relative flex h-[600px] w-full flex-col items-center justify-center overflow-hidden max-h-screen">
         <BentoGrid className="max-w-6xl mx-auto">
           {items.map((item, i) => (

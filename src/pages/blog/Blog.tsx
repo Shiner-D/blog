@@ -1,5 +1,6 @@
 import React from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import "./blog.module.css";
 const Blog: React.FC = () => {
   const projects = [
@@ -41,10 +42,18 @@ const Blog: React.FC = () => {
     },
   ];
   return (
-    <div className="max-w-5xl mx-auto px-8">
-      <HoverEffect
-        items={projects}
-      />
+    <div className="max-w-5xl mx-auto h-full px-8">
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-[70px]">
+        <VelocityScroll
+          numRows={1}
+          defaultVelocity={1}
+          style={{ fontFamily: "Ceyyt" }}
+          className="md:text-5xl text-base"
+        >
+          每次记录都是成长伏笔
+        </VelocityScroll>
+      </div>
+      <HoverEffect items={projects} className="bg-white/0 pt-[20px]" />
     </div>
   );
 };
