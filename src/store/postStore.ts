@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Post } from '../types';
+import { Post } from '../../types';
 import { supabase } from '../lib/supabase';
 
 interface PostState {
@@ -58,7 +58,7 @@ export const usePostStore = create<PostState>((set, get) => ({
       }
 
       const { data, error } = await query;
-      
+
       if (error) {
         console.error('Error fetching posts:', error);
         set({ posts: [], loading: false });

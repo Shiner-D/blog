@@ -23,14 +23,14 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="w-full">
-      <div className="relative flex h-[600px] w-full flex-col justify-center overflow-hidden max-h-screen">
+    <div className="w-full h-full">
+      <div className="relative flex h-hull w-full flex-col justify-center overflow-hidden max-h-screen">
         <MorphingText
           texts={title}
-          className="lg:text-[2.8rem] font-sans mt-[10vh] text-[#EFEAE7]"
+          className="lg:text-[2.8rem] mt-[10vh] text-[#fff8f5] !font-Ceyyt"
         />
-        <CardContainer className={`inter-var mt-20 ${homeStyle.home_card}`}>
-          <CardBody className="bg-[#3D2922] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+        <CardContainer className={`inter-var ${homeStyle.home_card}`}>
+          <CardBody className="bg-gradient-to-bl from-[#F1D7BD] to-[#2D1811] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
             <CardItem translateZ="200" className="w-full mt-4">
               <img
                 src={nezaiJ}

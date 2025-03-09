@@ -43,12 +43,12 @@ const Blog: React.FC = () => {
   ];
   return (
     <div className="max-w-5xl mx-auto h-full px-8">
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-[70px]">
+      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-[40px]">
         <VelocityScroll
           numRows={1}
           defaultVelocity={1}
-          style={{ fontFamily: "Ceyyt" }}
-          className="md:text-5xl text-base"
+          // style={{ fontFamily: "Ceyyt" }}
+          className="md:text-5xl text-base font-Ceyyt"
         >
           每次记录都是成长伏笔
         </VelocityScroll>

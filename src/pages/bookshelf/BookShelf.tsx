@@ -84,7 +84,7 @@ const BookShelf = () => {
         <TextRevealCard
           text="我的书架"
           revealText="技术与思想的交互"
-          className="text-center mt-[60px] bg-[#190904e8]"
+          className="text-center mt-[40px] bg-[#190904e8]"
         ></TextRevealCard>
       </div>
       <div className="h-[calc(100%-160px)] w-full flex items-center flex-wrap justify-start relative">

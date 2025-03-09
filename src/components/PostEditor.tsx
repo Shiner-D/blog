@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { useForm } from 'react-hook-form';
-import { Post } from '../types';
+import { Post } from '../../types';
 
 interface PostEditorProps {
   initialData?: Post;

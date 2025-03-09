@@ -125,9 +125,15 @@ const About = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-around">
-      <div className="flex justify-center">
-        <span className="cursor-default" onClick={handleClick}>我的信息</span>
+    <div className="w-full h-full flex flex-col">
+      <div className="flex justify-center h-[40px] my-[40px]">
+        <span
+          className="cursor-default !font-Ceyyt"
+          style={{ fontFamily: "Ceyyt, sans-serif" }}
+          onClick={handleClick}
+        >
+          我的信息
+        </span>
       </div>
       <div className="relative flex h-[600px] w-full flex-col items-center justify-center overflow-hidden max-h-screen">
         <BentoGrid className="max-w-6xl mx-auto">

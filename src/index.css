@@ -4,10 +4,11 @@
 
 @font-face {
   font-family: "Ceyyt";
-  src: url('./assets/fonts/xxPK1feWPyxj.woff'),
-  url('./assets/fonts/xxPK1feWPyxj.woff2');
+  src: url('./assets/fonts/xxPK1feWPyxj.woff') format('woff'),
+  url('./assets/fonts/xxPK1feWPyxj.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* 添加一些基础样式 */

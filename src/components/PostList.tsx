@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Post } from '../types';
+import { Post } from '../../types';
 import { format } from 'date-fns';
 
 interface PostListProps {
