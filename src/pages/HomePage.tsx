@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect, lazy, Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
 import homePage from "./styles/homePage.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Loading from "@/components/customUi/Loading/BeanEater/Loading";
 
 const Home = lazy(() => import(/* webpackChunkName: "home" */ "./home/Home"));
 const Blog = lazy(() => import(/* webpackChunkName: "blog" */ "./blog/Blog"));
@@ -17,16 +19,29 @@ interface ExtendedHTMLElement extends HTMLElement {
 }
 
 const HomePage = () => {
+  const [searchParams] = useSearchParams();
+  const sectionId = searchParams.get("section"); // 获取URL参数
+  useEffect(() => {
+    console.log('sectionId', sectionId);
+    if (sectionId) {
+      // 滚动到对应的 section
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [sectionId]);
+
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const [visibleSections, setVisibleSections] = useState<
     Record<string, boolean>
   >({});
 
   const sections = [
-    { id: "home", title: "home", color: "#FF5733", component: Home },
-    { id: "blog", title: "blog", color: "#33FF57", component: Blog },
-    { id: "book", title: "book", color: "#3357FF", component: BookShelf },
-    { id: "about", title: "about", color: "#FF33A6", component: About },
+    { id: "Home", title: "home", color: "#FF5733", component: Home },
+    { id: "Blog", title: "blog", color: "#33FF57", component: Blog },
+    { id: "BookShelf", title: "book", color: "#3357FF", component: BookShelf },
+    { id: "About", title: "about", color: "#FF33A6", component: About },
   ];
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -101,11 +116,11 @@ const HomePage = () => {
           <>
             <div className={`${homePage[title]} ${homePage.container}`}></div>
             {visibleSections[id] ? (
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loading></Loading>}>
                 <Component />
               </Suspense>
             ) : (
-              <div>Loading...</div>
+              <Loading></Loading>
             )}
           </>
         </section>

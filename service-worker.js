@@ -1,5 +1,7 @@
 const CACHE_NAME = "blog_v1";
 const ASSETS_TO_CACHE = [
+  "/",
+  "/index.html",
   "/src/assets/fonts/xxPK1feWPyxj.woff",
   "/src/assets/fonts/xxPK1feWPyxj.woff2",
 ];

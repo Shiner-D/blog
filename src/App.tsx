@@ -5,7 +5,7 @@ import AppRoutes from './routes';
 function App() {
   return (
     <Router>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
       <AppRoutes></AppRoutes>
     </Router>
   );

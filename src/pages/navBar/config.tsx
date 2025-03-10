@@ -1,6 +1,5 @@
 import React from "react";
 import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
-import BookShelf from "../bookshelf/BookShelf";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 export const Icons = {
