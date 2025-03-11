@@ -16,7 +16,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    minify: "terser",
+    minify: "esbuild",
     sourcemap: true, // 生成 sourcemap 以便调试
     rollupOptions: {
       treeshake: true,
