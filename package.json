@@ -19,6 +19,7 @@
     "@tabler/icons-react": "^3.30.0",
     "@types/canvas-confetti": "^1.9.0",
     "aceternity-ui": "^0.2.2",
+    "axios": "^1.8.3",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^2.30.0",

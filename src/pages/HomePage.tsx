@@ -22,7 +22,6 @@ const HomePage = () => {
   const [searchParams] = useSearchParams();
   const sectionId = searchParams.get("section"); // 获取URL参数
   useEffect(() => {
-    console.log('sectionId', sectionId);
     if (sectionId) {
       // 滚动到对应的 section
       const targetSection = document.getElementById(sectionId);

@@ -28,6 +28,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-var-requires": "off",
     "no-debugger": "off",
-    "no-redeclare": "off",
+    "no-redeclare": "off", // 关闭重复声明变量
   },
 };
