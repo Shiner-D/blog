@@ -17,6 +17,35 @@ interface SkeletonProps {
 }
 
 const About = () => {
+  const offlineData = {
+    basic: ["姓名：董亮", "职业: Web前端工程师", "居住地址：上海市浦东新区"],
+    skills: [
+      "JavaScript",
+      "Vue",
+      "React",
+      "TypeScript",
+      "Git",
+      "Webpack",
+      "Node.js",
+      "微信小程序",
+    ],
+    hobbies: [
+      "1. 探索前沿Web技术，也热衷于UI和动效；",
+      "2. 关注一些喜欢研究前端技术的博主，拓展更多经验；",
+      "3. 业余时间喜欢跑步，打羽毛球，玩游戏。",
+    ],
+    experience: [
+      "1. 2020年在蓝生信息科技有限公司负责云智慧医疗系统项目的前端开发工作；",
+      "2. 2022年在上海安赛瑞实业有限公司负责供应链管理系统项目的前端开发工作；",
+      "3. 2024年在玑脉（上海）数据技术有限公司负责纺纱智能管理系统项目的前端开发工作。",
+    ],
+    contacts: [
+      "微信：xiaoyaohull",
+      "邮箱：dongliang142857@gmail.com",
+      "GitHub：https://github.com/Shiner-D",
+      "CSDN：https://blog.csdn.net/weixin_46880889",
+    ],
+  };
 
   const [content, setContent] = useState<Resume>();
 
@@ -30,6 +59,7 @@ const About = () => {
           setContent(data);
         }
       } catch (error) {
+        setContent(offlineData);
         console.error(error);
       }
     }

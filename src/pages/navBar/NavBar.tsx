@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import Divider from "@/components/customUi/Divider";
 import { buttonVariants } from "@/components/ui/button";
 import { Dock, DockIcon } from "@/components/magicui/dock";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { DATA, Icons } from "./config";
@@ -28,23 +29,25 @@ const NavBar = () => {
   return (
     <div>
       <Dock
-        iconMagnification={90}
-        iconDistance={80}
+        iconMagnification={80}
+        iconDistance={60}
         direction="middle"
         className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50"
       >
         {DATA.base.map((item) => (
           <DockIcon key={item.label}>
-            <a
-              aria-label={item.label}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-12 rounded-full"
-              )}
-              onClick={(e) => handleClick(e, item.label)}
-            >
-              <item.icon className="size-4" />
-            </a>
+            <AnimatedTooltip content={item.label} hoverKey={item.label}>
+              <a
+                aria-label={item.label}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-12 rounded-full"
+                )}
+                onClick={(e) => handleClick(e, item.label)}
+              >
+                <item.icon className="!size-5" />
+              </a>
+            </AnimatedTooltip>
           </DockIcon>
         ))}
         <Divider
@@ -53,16 +56,18 @@ const NavBar = () => {
         ></Divider>
         {Object.entries(DATA.navbar.social).map(([name, social]) => (
           <DockIcon key={name}>
-            <a
-              aria-label={social.name}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-12 rounded-full"
-              )}
-              onClick={(e) => handleClick(e, social.name)}
-            >
-              <social.icon className="size-4" />
-            </a>
+            <AnimatedTooltip content={name} hoverKey={name}>
+              <a
+                aria-label={social.name}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-12 rounded-full"
+                )}
+                onClick={(e) => handleClick(e, social.name)}
+              >
+                <social.icon className="!size-5" />
+              </a>
+            </AnimatedTooltip>
           </DockIcon>
         ))}
         <Divider
@@ -71,16 +76,18 @@ const NavBar = () => {
         ></Divider>
         {Object.entries(DATA.conact.social).map(([name, social]) => (
           <DockIcon key={name}>
-            <a
-              aria-label={social.name}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-12 rounded-full"
-              )}
-              onClick={(e) => handleClick(e, social.name)}
-            >
-              <social.icon className="size-4" />
-            </a>
+            <AnimatedTooltip content={name} hoverKey={name}>
+              <a
+                aria-label={social.name}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-12 rounded-full"
+                )}
+                onClick={(e) => handleClick(e, social.name)}
+              >
+                <social.icon className="!size-5" />
+              </a>
+            </AnimatedTooltip>
           </DockIcon>
         ))}
       </Dock>
