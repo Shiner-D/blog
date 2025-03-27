@@ -4,6 +4,7 @@ import { MorphingText } from "@/components/magicui/morphing-text";
 import homeStyle from "./home.module.css";
 import { info } from "@/api/home";
 import { useTranslation } from "react-i18next";
+import { off } from "process";
 
 interface CardInfo {
   author: string;
@@ -20,12 +21,12 @@ const Home: React.FC = () => {
   const [baIcon, setBaIcon] = useState<string>("");
 
   useTranslation();
-  // const title = [
-  //   "折木泛舟",
-  //   "专注于构建优雅、高效的 Web 应用",
-  //   "热爱将设计与技术结合",
-  //   "创造令人愉悦的用户体验",
-  // ]
+  const offTitle = [
+    "折木泛舟",
+    "专注于构建优雅、高效的 Web 应用",
+    "热爱将设计与技术结合",
+    "创造令人愉悦的用户体验",
+  ]
   // [
   //   "Carving Paths Sailing Dreams",
   //   "Focused on building elegant and efficient web applications",
@@ -34,13 +35,17 @@ const Home: React.FC = () => {
   // ]
   useEffect(() => {
     const fetchData = async () => {
-      const res = await info();
-      const resData = res.data;
-      if (res.code === 200) {
-        const { title, ...rest } = resData;
-        const titleArr = title.split(",");
-        setTitle(titleArr);
-        setInfos(rest);
+      try {
+        const res = await info();
+        const resData = res.data;
+        if (res.code === 200) {
+          const { title, ...rest } = resData;
+          const titleArr = title.split(",");
+          setTitle(titleArr);
+          setInfos(rest);
+        }
+      } catch (error) {
+        setTitle(offTitle);
       }
     };
     fetchData();

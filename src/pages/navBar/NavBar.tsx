@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { DATA, Icons } from "./config";
 import { useTranslation } from "react-i18next";
 import { Modal } from "@/components/customUi/dialog/Modal";
-import { changeLanguage } from "i18next";
 
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
