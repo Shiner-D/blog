@@ -116,7 +116,7 @@ export const Icons = {
 
 export const DATA = {
   base: [
-    { href: "#home", icon: Icons.home, label: "Home" },
+    { href: "#home", icon: Icons.home, label: "home" },
     { href: "", icon: Icons.translate, label: "Translate" },
   ],
   navbar: {
