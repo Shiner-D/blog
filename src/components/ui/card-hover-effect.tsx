@@ -51,8 +51,8 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card className="h-[300px]">
-            <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
+            <CardTitle className="line-clamp-2">{item.title}</CardTitle>
+            <CardDescription className="line-clamp-8">{item.description}</CardDescription>
           </Card>
         </a>
       ))}
@@ -95,7 +95,6 @@ export const CardTitle = ({
       )}
     >
       {children}
-      {className}
     </h4>
   );
 };

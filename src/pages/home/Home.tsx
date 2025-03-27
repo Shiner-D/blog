@@ -3,6 +3,7 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { MorphingText } from "@/components/magicui/morphing-text";
 import homeStyle from "./home.module.css";
 import { info } from "@/api/home";
+import { useTranslation } from "react-i18next";
 
 interface CardInfo {
   author: string;
@@ -11,26 +12,37 @@ interface CardInfo {
   signature: string;
 }
 
-
 const Home: React.FC = () => {
   const [nezaiJ, setNezaiJ] = useState<string>("");
   const [nezaiD, setNezaiD] = useState<string>("");
   const [infos, setInfos] = useState<CardInfo>({} as CardInfo);
+  const [title, setTitle] = useState<string[]>([]);
+  const [baIcon, setBaIcon] = useState<string>("");
 
-  const title = [
-    "折木泛舟",
-    "专注于构建优雅、高效的 Web 应用",
-    "热爱将设计与技术结合",
-    "创造令人愉悦的用户体验",
-  ];
+  useTranslation();
+  // const title = [
+  //   "折木泛舟",
+  //   "专注于构建优雅、高效的 Web 应用",
+  //   "热爱将设计与技术结合",
+  //   "创造令人愉悦的用户体验",
+  // ]
+  // [
+  //   "Carving Paths Sailing Dreams",
+  //   "Focused on building elegant and efficient web applications",
+  //   "Passionate about combining design with technology",
+  //   "Creating delightful user experiences",
+  // ]
   useEffect(() => {
     const fetchData = async () => {
       const res = await info();
       const resData = res.data;
       if (res.code === 200) {
-        setInfos(resData);
+        const { title, ...rest } = resData;
+        const titleArr = title.split(",");
+        setTitle(titleArr);
+        setInfos(rest);
       }
-    }
+    };
     fetchData();
   }, []);
 
@@ -41,11 +53,14 @@ const Home: React.FC = () => {
     import("@/assets/images/nezai3.png").then((module) => {
       setNezaiD(module.default);
     });
+    import("../../../public/baIcon.png").then((module) => {
+      setBaIcon(module.default);
+    });
   }, []);
 
   return (
-    <div className="w-full h-full">
-      <div className="relative flex h-hull w-full flex-col justify-center overflow-hidden max-h-screen">
+    <div className={`w-full ${homeStyle.home}`}>
+      <div className="relative flex h-screen w-full flex-col justify-center overflow-hidden max-h-screen">
         <MorphingText
           texts={title}
           className="lg:text-[2.8rem] mt-[10vh] text-[#fff8f5] !font-Ceyyt"
@@ -72,33 +87,52 @@ const Home: React.FC = () => {
               translateZ="50"
               className={`text-xl font-bold text-[#CBB1A0] dark:text-white ${homeStyle.font_shadow}`}
             >
-              {infos.author || "折木泛舟"}
+              {infos.author || $t("home_name")}
             </CardItem>
             <CardItem
               as="p"
               translateZ="60"
               className={`text-[#CBB1A0] text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
-              职业：{infos.job || "前端开发者"}
+              {$t("job")}： {infos.job || "前端开发者"}
             </CardItem>
             <CardItem
               as="p"
               translateZ="70"
               className={`text-[#CBB1A0] text-sm w-full mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
-              爱好：{infos.hobby || "打球、跑步、音乐、动漫"}
+              {$t("hobby")}：{infos.hobby || "打球、跑步、音乐、动漫"}
             </CardItem>
             <CardItem
               as="p"
               translateZ="80"
               className={`text-[#CBB1A0] text-sm max-w-sm mt-2 dark:text-neutral-300 ${homeStyle.font_shadow}`}
             >
-              个性签名：
+              {$t("signature")}：
               {infos.signature ||
                 "最大荣耀不在于从不跌倒，而在于每次跌倒后都能站起来"}
             </CardItem>
           </CardBody>
         </CardContainer>
+      </div>
+      <div className="w-full flex justify-center items-center text-white bg-yellow-950 h-[48px] leading-[48px]">
+        <img src={baIcon} className="size-[16px] mr-[8px]" />
+        <a
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=34170202000759"
+          rel="noreferrer"
+          target="_blank"
+          className="mr-[10px] hover:text-blue-500"
+        >
+          皖公网安备34170202000759号
+        </a>
+        <a
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-500"
+        >
+          皖ICP备2025078884号-1
+        </a>
       </div>
     </div>
   );

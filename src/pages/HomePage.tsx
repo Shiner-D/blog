@@ -5,14 +5,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Loading from "@/components/customUi/Loading/BeanEater/Loading";
 
-const Home = lazy(() => import(/* webpackChunkName: "home" */ "./home/Home"));
-const Blog = lazy(() => import(/* webpackChunkName: "blog" */ "./blog/Blog"));
-const BookShelf = lazy(
-  () => import(/* webpackChunkName: "bookshelf" */ "./bookshelf/BookShelf")
-);
-const About = lazy(
-  () => import(/* webpackChunkName: "about" */ "./about/About")
-);
+const Home = lazy(() => import('./home/Home'));
+const Blog = lazy(() => import('./blog/Blog'));
+const BookShelf = lazy(() => import('./bookshelf/BookShelf'));
+const About = lazy(() => import('./about/About'));
 
 interface ExtendedHTMLElement extends HTMLElement {
   container: HTMLElement | null;

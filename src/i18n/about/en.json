@@ -1,0 +1,19 @@
+{
+    "about_title": "My Information",
+    "resume": {
+        "title": "Resume",
+        "name": "name",
+        "job": "job",
+        "address": "address"
+    },
+    "technologyStack": "Technology stack",
+    "hobby": "Hobby",
+    "experience": "Experience",
+    "contact": {
+        "title": "Link",
+        "weChat": "WeChat",
+        "Email": "Email",
+        "Github": "Github",
+        "CSDN": "CSDN"
+    }
+}

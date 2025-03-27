@@ -21,7 +21,37 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 在发送请求之前做些什么
+    // 全局参数：暂时为所有的接口都添加language参数
+    const commonParams = {
+      lang: localStorage.getItem("i18nextLng") || "en",
+    };
+    if (config.method?.toLowerCase() === "get") {
+      config.params = {
+        ...commonParams,
+        ...config.params,
+      }
+    } else {
+      // POST/PUT/DELETE 请求，将参数添加到data中
+      if (config.data) {
+        // 如果 data 是FormData，则需进行特殊处理
+        if (config.data instanceof FormData) {
+          for(const [key, value] of Object.entries(commonParams)) {
+            config.data.append(key, value);
+          }
+        } else {
+          // 普通的 JSON 数据
+          config.data = {
+            ...commonParams,
+            ...(typeof config.data === 'string' ? JSON.parse(config.data) : config.data)
+          };
+        }
+      } else {
+        // 如果没有 data，则创建一个空对象
+        config.data = commonParams;
+      }
+    }
+
+    // 生成请求唯一标识
     const requestKey = `${config.url}-${config.method}`;
 
     // 如果已经存在 AbortController，则取消之前的请求
@@ -43,7 +73,7 @@ instance.interceptors.request.use(
       config.headers = config.headers || new AxiosHeaders();
       config.headers["Authorization"] = `Bearer ${token}`;
     }
-
+    console.log("Request:", config, config.params, config.data);
     return config;
   },
   (error) => {

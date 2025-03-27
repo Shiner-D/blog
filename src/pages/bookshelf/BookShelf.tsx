@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import bookStyle from "./bookShelf.module.css";
 import { TextRevealCard } from "@/components/ui/text-reveal-card";
+import { useTranslation } from "react-i18next";
 
 import redBook from "@/assets/images/redBook.png";
 import redBook1 from "@/assets/images/redBook1.png";
@@ -20,6 +21,7 @@ import engineering from "@/assets/images/engineering.jpg";
 import engineering1 from "@/assets/images/engineering1.png";
 
 const BookShelf = () => {
+  useTranslation();
   const books = [
     {
       src: {
@@ -79,11 +81,11 @@ const BookShelf = () => {
     },
   ];
   return (
-    <div className="h-full w-full">
+    <div className={`h-full w-full ${bookStyle.book}`}>
       <div className="flex justify-center">
         <TextRevealCard
-          text="我的书架"
-          revealText="技术与思想的交互"
+          text={$t("bookshelf")}
+          revealText={$t("bookshelf_title")}
           className="text-center mt-[40px] bg-[#190904e8]"
         ></TextRevealCard>
       </div>

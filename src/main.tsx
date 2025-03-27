@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration.js";
+import './i18n';
+
 
 // 注册 Service Worker
 const mode = import.meta.env.MODE;

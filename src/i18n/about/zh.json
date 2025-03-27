@@ -1,0 +1,19 @@
+{
+    "about_title": "我的信息",
+    "resume": {
+        "title": "个人简介",
+        "name": "姓名",
+        "job": "职业",
+        "address": "地址"
+    },
+    "technologyStack": "技术栈",
+    "hobby": "兴趣爱好",
+    "experience": "项目与经验",
+    "contact": {
+        "title": "联系方式",
+        "weChat": "微信",
+        "Email": "邮箱",
+        "Github": "Github",
+        "CSDN": "CSDN"
+    }
+}

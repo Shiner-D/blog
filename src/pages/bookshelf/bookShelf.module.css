@@ -1,3 +1,8 @@
+.book {
+    background-image: url('@/assets/images/bg_book2.jpg');
+    background-size: cover;
+}
+
 .card {
     width: 25%;
     height: 220px;

@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import aboutStyle from "./about.module.scss";
 import { resume } from "@/api/home";
 import { Resume } from "@/api/type";
-import {
-  IconArrowWaveRightUp,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
-} from "@tabler/icons-react";
-
+import { useTranslation } from "react-i18next";
 interface SkeletonProps {
   content?: string[];
   type?: string;
 }
 
 const About = () => {
+  useTranslation(); // 翻译后自动触发更新
   const offlineData = {
     basic: ["姓名：董亮", "职业: Web前端工程师", "居住地址：上海市浦东新区"],
     skills: [
@@ -62,19 +57,22 @@ const About = () => {
         setContent(offlineData);
         console.error(error);
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
   const Skeleton = ({ content, type }: SkeletonProps) => (
-    <div className="w-full h-full min-h-[6rem] text-[12px] p-[8px] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-[#010c35] group-hover/bento:-translate-y-2 group-hover/bento:shadow-xl">
-      <div className={`${type === "technology" ? "flex flex-wrap gap-2" : ""}`}>
-        {content && type !== "technology"
-          ? content.map((item, i) => (
+    <div className={`w-full h-screen `}>
+      <div className="w-full h-full min-h-[6rem] text-[12px] p-[8px] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-[#010c35] group-hover/bento:-translate-y-2 group-hover/bento:shadow-xl">
+        <div
+          className={`${type === "technology" ? "flex flex-wrap gap-2" : ""}`}
+        >
+          {content && type !== "technology"
+            ? content.map((item, i) => (
               <p className="text-sm/7 text-stone-900 font-normal" key={i}>
                 {item}
               </p>
             ))
-          : content.map((it, idx) => (
+            : content.map((it, idx) => (
               <p
                 className="text-sm/7 text-stone-900 font-normal w-[30%]"
                 key={idx}
@@ -82,39 +80,40 @@ const About = () => {
                 {it}
               </p>
             ))}
+        </div>
       </div>
     </div>
   );
   const items = [
     {
-      title: "个人简介",
+      title: $t("resume.title"),
       description: "",
       header: <Skeleton content={content?.basic || []} type="resume" />,
-      icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+      // icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "技术栈",
+      title: $t("technologyStack"),
       description: "",
       header: <Skeleton content={content?.skills || []} type="technology" />,
-      icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+      // icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "兴趣爱好",
+      title: $t("hobby"),
       description: "",
       header: <Skeleton content={content?.hobbies || []} type="hobby" />,
-      icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
+      // icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "项目与经验",
+      title: $t("experience"),
       description: "",
       header: <Skeleton content={content?.experience || []} type="project" />,
-      icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+      // icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "联系方式",
+      title: $t("contact.title"),
       description: "",
       header: <Skeleton content={content?.contacts || []} type="contact" />,
-      icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+      // icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
     },
   ];
 
@@ -146,14 +145,14 @@ const About = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className={`w-full h-full flex flex-col ${aboutStyle.about}`}>
       <div className="flex justify-center h-[40px] my-[40px]">
         <span
-          className="cursor-default !font-Ceyyt"
+          className="cursor-default text-white text-[26px] !font-Ceyyt"
           style={{ fontFamily: "Ceyyt, sans-serif" }}
           onClick={handleClick}
         >
-          我的信息
+          {$t("about_title")}
         </span>
       </div>
       <div className="relative flex h-[600px] w-full flex-col items-center justify-center overflow-hidden max-h-screen">
@@ -164,7 +163,7 @@ const About = () => {
               title={item.title}
               description={item.description}
               header={item.header}
-              icon={item.icon}
+              // icon={item.icon}
               className={i === 3 || i === 6 ? "md:col-span-2" : ""}
             />
           ))}

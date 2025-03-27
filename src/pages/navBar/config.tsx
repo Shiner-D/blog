@@ -22,7 +22,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  wxChat: (props: IconProps) => (
+  weChat: (props: IconProps) => (
     <svg
       viewBox="0 0 1024 1024"
       version="1.1"
@@ -122,17 +122,17 @@ export const DATA = {
   navbar: {
     social: {
       Blog: {
-        name: "Blog",
+        name: "blog",
         url: "#blog",
         icon: Icons.blog,
       },
       BookShelf: {
-        name: "BookShelf",
+        name: "bookShelf",
         url: "#book",
         icon: Icons.book,
       },
       About: {
-        name: "About",
+        name: "about",
         url: "#about",
         icon: Icons.about,
       },
@@ -141,14 +141,14 @@ export const DATA = {
   conact: {
     social: {
       Github: {
-        name: "Github",
+        name: "github",
         url: "https://github.com/Shiner-D",
         icon: Icons.github,
       },
-      WxChat: {
-        name: "WxChat",
+      WeChat: {
+        name: "weChat",
         url: "xiaoyaohull",
-        icon: Icons.wxChat,
+        icon: Icons.weChat,
       },
     },
   },

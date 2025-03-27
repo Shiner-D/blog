@@ -3,9 +3,11 @@ import { articles } from "@/api/home";
 import { ArticlesResponse, Articles } from "@/api/type";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
-import "./blog.module.css";
+import blogStyle from "./blog.module.css";
+import { useTranslation } from "react-i18next";
 
 const Blog: React.FC = () => {
+  useTranslation(); // 翻译后自动更新
   const offlineData = [
     {
       title: "JavaScript事件流探索",
@@ -65,18 +67,20 @@ const Blog: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-5xl mx-auto h-full px-8">
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-[40px]">
-        <VelocityScroll
-          numRows={1}
-          defaultVelocity={1}
-          // style={{ fontFamily: "Ceyyt" }}
-          className="md:text-5xl text-base font-Ceyyt"
-        >
-          每次记录都是成长伏笔
-        </VelocityScroll>
+    <div className={`h-screen ${blogStyle.blog}`}>
+      <div className={`max-w-5xl mx-auto pt-[10px] `}>
+        <div className="flex w-full flex-col items-center justify-center overflow-hidden">
+          <VelocityScroll
+            numRows={1}
+            defaultVelocity={1}
+            // style={{ fontFamily: "Ceyyt" }}
+            className="md:text-5xl text-base font-Ceyyt"
+          >
+            {$t("blog_title")}
+          </VelocityScroll>
+        </div>
+        <HoverEffect items={projects} className="bg-white/0 pt-[20px]" />
       </div>
-      <HoverEffect items={projects} className="bg-white/0 pt-[20px]" />
     </div>
   );
 };

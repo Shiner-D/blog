@@ -1,4 +1,4 @@
-import React, { startTransition } from "react";
+import React, { useState, startTransition, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Divider from "@/components/customUi/Divider";
 import { buttonVariants } from "@/components/ui/button";
@@ -7,24 +7,69 @@ import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { DATA, Icons } from "./config";
+import { useTranslation } from "react-i18next";
+import { Modal } from "@/components/customUi/dialog/Modal";
+import { changeLanguage } from "i18next";
 
 const NavBar = () => {
-  const whiteList = ['WxChat', 'Github'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChinese, setIsChinese] = useState(false);
+  const whiteList = ["Translate", "WeChat", "Github"];
   const navigate = useNavigate();
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, value: string) => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const lang = localStorage.getItem("i18nextLng") || "en-US";
+    if (lang === "en" || lang === "en-US") {
+      setIsChinese(false);
+    } else {
+      setIsChinese(true);
+    }
+  }, []);
+
+  /**
+   * 导航栏按钮点击事件
+   * @param e 事件
+   * @param value 按钮值
+   * @returns
+   */
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    value: string
+  ) => {
     e.preventDefault();
     if (!whiteList.includes(value)) {
       startTransition(() => {
-        navigate(`/?section=${value}`);
-      })
+        navigate(`/${value}`);
+      });
       return;
     }
-    if (value === 'WxChat') {
-      navigator.clipboard.writeText('微信号: xiaoyaohull');
+    if (value === "WeChat") {
+      navigator.clipboard.writeText("微信号: xiaoyaohull");
       toast.success("复制成功");
       return;
     }
+    if (value === "Translate") {
+      setIsModalOpen(true);
+    }
     window.open(DATA.conact.social[value].url, "_blank");
+  };
+
+  /**
+   * 切换语言
+   */
+  const changeLanguage = () => {
+    setIsModalOpen(false);
+    const lang = localStorage.getItem("i18nextLng") || "en-US";
+    if (lang === "en" || lang === "en-US") {
+      localStorage.setItem("i18nextLng", "zh");
+      i18n.changeLanguage("zh");
+      setIsChinese(true);
+    } else {
+      localStorage.setItem("i18nextLng", "en");
+      i18n.changeLanguage("en");
+      setIsChinese(false);
+    }
   };
   return (
     <div>
@@ -36,7 +81,7 @@ const NavBar = () => {
       >
         {DATA.base.map((item) => (
           <DockIcon key={item.label}>
-            <AnimatedTooltip content={item.label} hoverKey={item.label}>
+            <AnimatedTooltip content={ $t(item.label)} hoverKey={item.label}>
               <a
                 aria-label={item.label}
                 className={cn(
@@ -56,7 +101,7 @@ const NavBar = () => {
         ></Divider>
         {Object.entries(DATA.navbar.social).map(([name, social]) => (
           <DockIcon key={name}>
-            <AnimatedTooltip content={name} hoverKey={name}>
+            <AnimatedTooltip content={$t(name)} hoverKey={name}>
               <a
                 aria-label={social.name}
                 className={cn(
@@ -76,7 +121,7 @@ const NavBar = () => {
         ></Divider>
         {Object.entries(DATA.conact.social).map(([name, social]) => (
           <DockIcon key={name}>
-            <AnimatedTooltip content={name} hoverKey={name}>
+            <AnimatedTooltip content={$t(name)} hoverKey={name}>
               <a
                 aria-label={social.name}
                 className={cn(
@@ -91,6 +136,30 @@ const NavBar = () => {
           </DockIcon>
         ))}
       </Dock>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={$t('tip')}
+        width="400px"
+      >
+        <div className="text-center">
+          <p>{isChinese ? $t("translateEn") : $t("translateZh")}</p>
+          <div className="flex justify-end">
+            <button
+              className="mt-4 px-4 py-2 bg-zinc-500 text-white rounded hover:bg-zinc-600 mr-[10px]"
+              onClick={() => setIsModalOpen(false)}
+            >
+              {$t("cancel")}
+            </button>
+            <button
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              onClick={changeLanguage}
+            >
+              {$t("confirm")}
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

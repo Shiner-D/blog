@@ -11,6 +11,7 @@ export interface User {
   hobby: string;
   job: string;
   signature: string;
+  title: string;
 }
 
 export interface Articles {
